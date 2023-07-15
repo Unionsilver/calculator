@@ -35,7 +35,7 @@ public class CalculatorServiceImpl implements CalculatorServicee {
         int num1 = 5;
         int num2 = 5;
         if (num1 == 0 || num2 == 0)
-           throw new IllegalArgumentException("На ноль делить нельзя");
+           throw new IllegalArgumentException("На ноль  делить нельзя");
         return num1 / num2;
     }
 }
