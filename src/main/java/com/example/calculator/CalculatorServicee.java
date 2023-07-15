@@ -3,14 +3,13 @@ package com.example.calculator;
 public interface CalculatorServicee {
     String hello();
 
+    String addTwoNum(int num1, int num2);
 
-    int addTwoNum();
+    String minusTwoNum(int num1, int num2);
 
-    int minusTwoNum();
+    String multiplyTwoNum(int num1, int num2);
 
-    int multiplyTwoNum();
-
-    int divideTwoNum();
+    String divideTwoNum(int num1, int num2);
 }
 
 
