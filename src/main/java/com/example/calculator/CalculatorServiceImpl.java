@@ -6,37 +6,31 @@ import org.springframework.stereotype.Service;
 public class CalculatorServiceImpl implements CalculatorServicee {
     @Override
     public String hello() {
-        return "<b>Добро пожаловать в калькулятор</b>";
+        return "Добро пожаловать в калькулятор";
     }
 
     @Override
-    public int addTwoNum() {
-        int num1 = 5;
-        int num2 = 5;
-        return num1 + num2;
+    public String addTwoNum(int num1, int num2) {
+        int sum = num1 + num2;
+        return num1 + "+" + num2 + "=" + sum ;
     }
 
     @Override
-    public int minusTwoNum() {
-        int num1 = 5;
-        int num2 = 5;
-        return num1 - num2;
+    public String minusTwoNum(int num1, int num2) {
+        int sum = num1 - num2;
+        return num1 + "-" + num2 + "=" + sum ;
     }
 
     @Override
-    public int multiplyTwoNum() {
-        int num1 = 5;
-        int num2 = 5;
-        return num1 * num2;
+    public String multiplyTwoNum(int num1, int num2) {
+        int sum = num1 * num2;
+        return num1 + "*" + num2 + "=" + sum ;
     }
 
     @Override
-    public int divideTwoNum() {
-        int num1 = 5;
-        int num2 = 5;
-        if (num1 == 0 || num2 == 0)
-           throw new IllegalArgumentException("На ноль делить нельзя");
-        return num1 / num2;
+    public String divideTwoNum(int num1 , int num2) {
+        double sum = (double) num1 / num2;
+        return num1 + "/" + num2 + "=" + sum;
     }
 }
 
