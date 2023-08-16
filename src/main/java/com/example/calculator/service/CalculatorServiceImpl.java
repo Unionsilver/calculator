@@ -1,6 +1,5 @@
 package com.example.calculator.service;
 
-import com.example.calculator.service.CalculatorServicee;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,17 +10,17 @@ public class CalculatorServiceImpl implements CalculatorServicee {
     }
 
     @Override
-    public int addTwoNum(int num1, int num2) {
+    public long addTwoNum(long num1, long num2) {
         return num1 + num2;
     }
 
     @Override
-    public int minusTwoNum(int num1, int num2) {
+    public long minusTwoNum(long num1, long num2) {
         return num1 - num2;
     }
 
     @Override
-    public int multiplyTwoNum(int num1, int num2) {
+    public long multiplyTwoNum(long num1, long num2) {
         return num1 * num2;
     }
 

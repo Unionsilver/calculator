@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CalculatorServiceImplTest {
 
 CalculatorServicee underTest = new CalculatorServiceImpl();
@@ -22,54 +21,49 @@ CalculatorServicee underTest = new CalculatorServiceImpl();
 
     @Test
     void add_num1PlusNum2_integerResult() {
-        int result = underTest.addTwoNum(2, 2);
+        long result = underTest.addTwoNum(2, 2);
         assertEquals(4,result);
     }
     @Test
-    void add_num1PlusNum2_integerResult2() {
-        int result = underTest.addTwoNum(Integer.MAX_VALUE, Integer.MAX_VALUE);
-        assertEquals(-2,result);
+    void add_num1AndNum2AreMaxValue_resultPositiveNum() {
+        long result = underTest.addTwoNum(Integer.MAX_VALUE, Integer.MAX_VALUE);
+        assertEquals(4294967294L,result);
     }
     @Test
-    void add_num1PlusNum2_integerResult3() {
-        int result = underTest.addTwoNum(Integer.MAX_VALUE, Integer.MIN_VALUE);
-        assertEquals(-1,result);
+    void add_num1AndNum2AreMaxValueMinusMinValue_resultShows() {
+        long result = underTest.addTwoNum(Integer.MAX_VALUE, Integer.MIN_VALUE);
+        assertEquals(-1L,result);
     }
 
     @Test
-    void minus_num1MinusNum2_integerResult() {
-        int result = underTest.minusTwoNum(4, 2);
+    void minus_num1AndNum2_resultNum() {
+        long result = underTest.minusTwoNum(4, 2);
         assertEquals(2,result);
     }
     @Test
-    void minus_num1MinusNum2_integerResult2() {
-        int result = underTest.minusTwoNum(4, 6);
+    void minus_num1AndNum2_resultNegativeNum() {
+        long result = underTest.minusTwoNum(4, 6);
         assertEquals(-2,result);
     }
     @Test
-    void minus_num1MinusNum2_integerResult3() {
-        int result = underTest.minusTwoNum(Integer.MAX_VALUE, Integer.MAX_VALUE);
+    void minus_num1AndNum2MaxAndMaxValue_integerResult() {
+        int result = (int) underTest.minusTwoNum(Integer.MAX_VALUE, Integer.MAX_VALUE);
         assertEquals(0,result);
     }
     @Test
-    void minus_num1MinusNum2_integerResult4() {
-        int result = underTest.minusTwoNum(Integer.MIN_VALUE, Integer.MAX_VALUE);
-        assertEquals(1,result);
+    void minus_num1AndNum2MinAndMaxValue_result() {
+        long result = underTest.minusTwoNum(Integer.MIN_VALUE, Integer.MAX_VALUE);
+        assertEquals(-4294967295L ,result);
     }
 
     @Test
-    void multiply_num1MultiplyNum2_integerResult() {
-        int result = underTest.multiplyTwoNum(2, 2);
-        assertEquals(4,result);
-    }
-    @Test
-    void multiply_num1MultiplyNum2_integerResult2() {
-        int result = underTest.multiplyTwoNum(2, 2);
+    void multiply_num1AndNum2_result() {
+        long result = underTest.multiplyTwoNum(2, 2);
         assertEquals(4,result);
     }
 
     @Test
-    void divide_num1DividedNum2_integerResultWithoutFraction() {
+    void divide_num1AndNum2_integerResultWithoutFraction() {
         double result = underTest.divideTwoNum(6, 3);
         assertEquals(2,result);
     }
@@ -89,10 +83,46 @@ CalculatorServicee underTest = new CalculatorServiceImpl();
         assertEquals(expectedResult, result);
 
     }
-    private Stream<Arguments> dataForDivide (){
+    private static Stream<Arguments> dataForDivide (){
         return  Stream.of(
                 Arguments.of(6,3,2),
                 Arguments.of(10,9,1.1111111111111112)
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("dataForPlus")
+    void plus__returnDouble(int num1, int num2 , int expectedResult){
+        double result = underTest.addTwoNum(num1, num2);
+        assertEquals(expectedResult, result);
+
+    }
+    private static Stream<Arguments> dataForPlus (){
+        return  Stream.of(
+                Arguments.of(6,3,9)
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("dataForMinus")
+    void plus__returnDouble(long num1, long num2 , int expectedResult){
+        double result = underTest.minusTwoNum(num1, num2);
+        assertEquals(expectedResult, result);
+
+    }
+    private static Stream<Arguments> dataForMinus (){
+        return  Stream.of(
+                Arguments.of(6,3,3)
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("dataForMultiply")
+    void plus__returnDouble(long num1, long num2 , long expectedResult){
+        double result = underTest.multiplyTwoNum(num1, num2);
+        assertEquals(expectedResult, result);
+
+    }
+    private static Stream<Arguments> dataForMultiply (){
+        return  Stream.of(
+                Arguments.of(6,2,12)
         );
     }
 }
